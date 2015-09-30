@@ -1,0 +1,6 @@
+5
+D h H H
+c B F B
+C D c F
+H d I D
+F C f d

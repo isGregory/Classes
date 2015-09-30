@@ -1,0 +1,64 @@
+CSX Puzzle Solver, Project Part 2: Water & Clock
+
+Name: Gregory Hoople
+
+1. Explain how your common solver is able to work with both puzzles.
+
+    With how I implemented the solver the majority of the "work" is 
+    done in the puzzle classes. Those classes decide what the options
+    are for the program. The solver simply handles a bredth first
+    search to handle the order of what data is checked. Thus as long
+    as the puzzle classes have standardized the way the "work" is passed
+    around with the solver and the solver knows when to stop the
+    interface helps make things quite simple.
+
+2. What was the type of configuration you used for each puzzle?
+
+    So the way I decided to configure the data with each puzzle was
+    based on what each state required. The clock puzzle needed to keep
+    track of only the hour hand at each point. Where as the water
+    puzzle needed to keep track of any number of buckets. But both were
+    just passing around integers to keep track of the states. So in doing
+    this project I decided to go from keeping track of a single integer
+    to keeping track of an arraylist of integers so we could track the
+    buckets. This meant that for the clock it simply would deal with
+    an arraylist of one element for each state. I also implemented a
+    hashSet to prevent doubles from propogating. Had there been various
+    objects in each state of the puzzle I think I would have explored
+    creating a generic to pass around, that each puzzle could implement.
+
+3. Starting with the Puzzle interface from part 1, what were the major changes and additions you had to make?
+
+    I thought I would have to change more and in fearing that I made
+    quite a few notes playing around with how best to alter things
+    so that there wasn't a lot to rewrite or any major redesigns needed.
+    The major thing that changed was the types. For the getNeighbors()
+    function I changed the configuration type from an integer to an
+    ArrayList of integers. Then the return type of the function became
+    an ArrayList of Arraylists of integers. So in the case of the water
+    each arraylist of integers held the states of the buckets and the
+    function returned an arraylist of all the possible states. Then for
+    the getStart() it was just returning the starting integer. That was
+    no longer acceptable for this and so I set it up to return the original
+    state of an arraylist of integers. There was also a big change with the
+    Solver class where besides the changing of the types to match the
+    updated puzzle interface, I decided to create another function to
+    check if a configuration was a solution or not. Previously we simply
+    had to compare a single number to the goal number, now we were required
+    to compare an arraylist to the goal number. Then the other important
+    thing I changed was with printing out the solution I created a way
+    that worked with both puzzles.
+
+4. What problems, if any, did you encounter when re-designing your project from part 1?
+
+    The redesign went pretty smoothly compared to what I was expecting.
+    There was a few challenges like needing a function to check if the
+    current configuration was a solution. But the trickiest problem I
+    had was that I didn't think to make any safe blocks to prevent
+    a bucket from pouring into itself. The math I had used when pouring
+    had assumed that you were pouring to another bucket. So I didn't check
+    if the two buckets were the same and I had not put any concern towards
+    assigning variables that could be talking about the same thing.
+    Creating water from nothing did provide for a very efficient
+    solution to answer certain problems; I decided against keeping it
+    though.

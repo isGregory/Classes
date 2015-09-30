@@ -1,0 +1,90 @@
+Name: Gregory Hoople
+Project: Battleship
+Date Due: 2013-9-21
+
+Process: I wrote up all the functions of the board one at a 
+time and tested them afterwards. I build the board using the main method.
+For example:
+        //Test Code
+        System.out.println("Making Board:");
+        GameBoard myBoard = new GameBoard(7);
+        System.out.println("Printing Board:");
+        System.out.println(myBoard);
+        myBoard.addShip('A', 'c', 'A', 'g', 'A');
+        myBoard.addShip('D', 'B', 'b', 'B', 'B');
+        System.out.println(myBoard);
+        System.out.println(myBoard.print('S'));
+        System.out.println("Printed.");
+From there I build the functionality up to get user input. Once the game
+seemed to be working from there I added the error handling and the reading
+of files in. Then I worked to test and make sure that the output matched the
+example given on the website. From there I made sure to get all the errors
+that the prompt wanted us to have.
+
+In an attempt to break commandlines I would fire at the same location
+in the water or at ships and make sure the stats increased for misses.
+I would attempt to fire at locations that were too far or send additional
+arguments to certain calls.
+
+After user commands were sufficiently tested I went on to try breaking
+the program with bad Sample files to make sure the errors worked propperly.
+
+File: [Sample]
+5
+D h H H
+c B F B
+C D c F
+H d I D
+F C f d
+Description: Testing the exact same input as the example shown online but with upper and lower case characters.
+Result: Runs how it should. Tested by issuing the exact same commands as in the test example.
+
+File: [Sample1]
+5
+D H Z H
+C B F B
+C D C F
+H D I D
+F C F D
+Description: One of the ships wants to be placed on the 'Y' coordinate. Tested with a board that is 25 x 25. Ship places. Tested with a board that is anything less and it will not work and throws error that it is out of bounds.
+
+File: [Sample2]
+5
+D h H H
+c B F B
+C D $ F
+H d I D
+F C f d
+Description: One of the ships wants to be placed in the '$' coordinate. Will not launch. Throws error.
+
+File: [Sample3]
+Content:
+5
+D H H G
+C B F B
+C D C F
+H D I D
+F C F D
+Description: File would create a diagonal ship. Will not launch and throws an error.
+
+File: [Sample4]
+Content:
+1
+D h H H
+Description: A single ship. Works as long as the board is large enough.
+
+File: [Sample5]
+Content:
+1
+A A a a
+Description: A single ship 1x1. Works.
+
+File: [Sample6]
+Content:
+5
+D h H H
+c B F B
+C D c F
+H d I D
+F C f I
+Description: A group of ships where the last one overlaps the first. Throws error.
